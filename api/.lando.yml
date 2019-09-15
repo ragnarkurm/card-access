@@ -1,0 +1,17 @@
+name: card-access-db
+
+env_file:
+  - .env
+
+services:
+  appserver:
+    type: mysql
+    creds:
+      user: ca
+      password: ca
+      database: ca
+    portforward: 32200
+    run_as_root:
+      - apt-get update -y
+      - apt-get upgrade -y
+      - apt-get install -y less

@@ -1,0 +1,22 @@
+{
+  "name": "card-access-api",
+  "version": "1.0.0",
+  "description": "Card Access API",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.9.3",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "graphql": "^14.5.5"
+  },
+  "engines": {
+    "node": ">=11",
+    "npm": ">=6.6.0"
+  }
+}
