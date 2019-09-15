@@ -1,15 +1,28 @@
 SERVICE=CardAccessApi
 
-start: ensure_pm2 ensure_env
-	pm2 startOrRestart ecosystem.config.js --env $(ENVIRONMENT_TYPE)
-	sleep 2
-	tail -n20 ~/.pm2/logs/$(SERVICE)-*.log
+start: ensure_pm2 ensure_env stop
+	pm2 startOrRestart ecosystem.config.js --env '$(ENVIRONMENT_TYPE)'
 
 stop: ensure_pm2
 	-pm2 delete $(SERVICE)
 
 install: ensure_pm2
 	npm install
+
+install_global:
+	npm install -g pm2
+
+db:
+	lando ssh -u root -c 'mysql ca'
+
+db_drop:
+	API_MODE=drop make start
+
+db_create: stop
+	API_MODE=create make start
+
+db_populate: stop
+	API_MODE=populate make start
 
 ensure_env:
 	@if [ -z $(ENVIRONMENT_TYPE) ]; then \
